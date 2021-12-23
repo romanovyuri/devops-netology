@@ -125,35 +125,7 @@
     
     *Наибольшая задержка в AS 15169  на 11 хопе*
 
-    `$ whois -h whois.ripe.net 79.104.235.213`
-
-    ```
-    route:          79.104.0.0/16
-    descr:          EDN SOVINTEL
-    origin:         AS3216
-    mnt-by:         SOVINTEL-MNT
-    created:        2008-12-11T08:32:08Z
-    last-modified:  2008-12-11T08:32:08Z
-    source:         RIPE # Filtered
-    ```
-
-    `$ whois -h whois.ripe.net AS3216`
-
-    ```
-    role:           Teleross NOC
-    address:        111250  Russia Moscow, Krasnokazarmennaja, 12
-    org:            ORG-ES15-RIPE
-    admin-c:        SVNT1-RIPE
-    tech-c:         SVNT2-RIPE
-    nic-hdl:        TELE1-RIPE
-    abuse-mailbox:  abuse-b2b@beeline.ru
-    mnt-by:         AS3216-MNT
-    remarks:        formely Sovam Teleport NOC
-    created:        2002-05-27T14:37:41Z
-    last-modified:  2021-09-24T07:14:32Z
-    source:         RIPE # Filtered
-    ```
-
+    
 7. Какие DNS сервера отвечают за доменное имя dns.google? Какие A записи? воспользуйтесь утилитой `dig`
 
    
