@@ -4,7 +4,7 @@
 
 1. Установите Bitwarden плагин для браузера. Зарегестрируйтесь и сохраните несколько паролей.
 
-    ![Screenshoot browser plugin](./devops-netology-0309-1.png)
+![Screenshoot browser plugin](./sysadm3_9_1.png)
 
     *Выполнено*
 
@@ -40,7 +40,7 @@
     `$ sudo nano /var/www/localhost/index.html`
 
     ```
-    <h1>it worked!</h1>
+    <h1>HOMEWORK3.9!</h1>
     ```
 
     `$ sudo a2ensite localhost`
@@ -49,7 +49,7 @@
 
     `$ sudo systemctl reload apache2`
 
-    ![Screenshoot browser](./devops-netology-0309-3.png)
+![Screenshoot browser](./sysadm3_9_3.png)
 
 4. Проверьте на TLS уязвимости произвольный сайт в интернете (кроме сайтов МВД, ФСБ, МинОбр, НацБанк, РосКосмос, РосАтом, РосНАНО и любых госкомпаний, объектов КИИ, ВПК ... и тому подобное).
 
@@ -271,7 +271,7 @@ Done testing now all IP addresses (on port 443): 104.22.41.171 172.67.21.207 104
 
 6. Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.
 
-    *На клиенте*
+   
 
     ```
     $  mv ~/.ssh/id_rsa ~/.ssh/rommv_rsa
@@ -295,8 +295,8 @@ Done testing now all IP addresses (on port 443): 104.22.41.171 172.67.21.207 104
 
 7. Соберите дамп трафика утилитой tcpdump в формате pcap, 100 пакетов. Откройте файл pcap в Wireshark.
 
-    `$ sudo tcpdump -w pcap39.pcap -i ens33 -c 100 host 192.168.10.164`
+    `$sudo tcpdump -w data.pcap -c 100`
 
-    ![Screenshoot wireshark](./devops-netology-0309-4.png)
+![Screenshoot wireshark](./sysadm3_9_4.png)
 
  ---
