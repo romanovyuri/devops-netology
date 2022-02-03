@@ -58,16 +58,16 @@ done
 array_ip=("192.168.10.1" "192.168.10.21" "ya.ru")
 i=0
 while ((i<5))
-  do.
+  do
   for j in ${array_ip[@]}
     do
-<------> nc -w 1 $j 80
-<------>if [ "$?" == 0 ]
-<------><------>then
-<------><------>    echo $j" OK"  >> logfile
-<------><------>else.
-<------><------>    echo $j" not OK" >> logfile
-<------>fi....
+	 nc -w 1 $j 80
+	if [ "$?" == 0 ]
+		then
+		    echo $j" OK"  >> logfile
+		else.
+		    echo $j" not OK" >> logfile
+	fi
     done
       let "i+=1"
    done
@@ -79,21 +79,20 @@ while ((i<5))
 ### Ваш скрипт:
 ```bash
 #!/usr/bin/env bash
-set -x
 array_ip=("192.168.10.1" "192.168.10.21" "ya.ru")
 i=0
 while ((i<5))
-  do.
+  do
   for j in ${array_ip[@]}
     do
-<------> nc -w 1 $j 80
-<------>if [ "$?" == 0 ]
-<------><------>then
-<------><------>    echo $j" OK" >> logfile
-<------><------>else.
-<------><------>    echo $j   >> error.
-<------><------>    exit
-<------>fi....
+	 nc -w 1 $j 80
+	if [ "$?" == 0 ]
+		then
+		    echo $j" OK" >> logfile
+		else
+		    echo $j   >> error
+		    exit
+	fi
     done
       let "i+=1"
    done
