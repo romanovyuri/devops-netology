@@ -245,28 +245,54 @@ server {
 
 ```
 
+
+
 #!/usr/bin/env bash
 
-set -x
-
-# Зададим переменную для места хранения сертификатов
+# Переменная для места хранения сертификатов
 CERTPATH="/etc/nginx/ssl"
 
-# Переменная для TTL сертификата
+#Переменная для места хранения ключей и токена  vault 
+KEYSF="/etc/nginx/ssl/keys"
+
+#Переменная для TTL сертификата
 TTLCERT="720h"
 
-# Имя сайта вводимое первым аргументом 
+#Имя сайта вводимое первым аргументом
 SITENAME=$1
 
 export VAULT_ADDR="http://127.0.0.1:8200"
 unset VAULT_TOKEN
-export VAULT_TOKEN="s.OW6ObreC0VUIenmBdFQ7vLKp"
 
 if [[ $SITENAME = "" ]]
 then
-    echo 'Need DNS name'; exit 1
+    echo 'Need 1 arg with site DNS name'; exit 1
 fi
 
+if [[ $(vault status -format=json | jq -r '.initialized') != true ]]
+then
+    echo 'Error: Vault not initialized'; exit 1
+fi
+
+if [[ $(vault status -format=json | jq -r '.sealed') == true ]]
+then
+    UNSKEY1=$(grep "Key 1:" $KEYSF | awk '{print $4}')
+    UNSKEY2=$(grep "Key 2:" $KEYSF | awk '{print $4}')
+    UNSKEY3=$(grep "Key 3:" $KEYSF | awk '{print $4}')
+
+    RTOKEN=$(grep "Root Token:" $KEYSF | awk '{print $4}')
+
+    vault operator unseal $UNSKEY1 > /dev/null
+    vault operator unseal $UNSKEY2 > /dev/null
+    vault operator unseal $UNSKEY3 > /dev/null
+    vault login $RTOKEN > /dev/null
+
+fi
+
+if [[ $(vault status -format=json | jq -r '.sealed') == true ]]
+then
+    echo 'Error: Vault sealed, cant unseal'; exit 1
+else
     vault write -format=json pki_int/issue/example-dot-com common_name=$SITENAME ttl=$TTLCERT > $CERTPATH/$SITENAME.json
     
     if [[ $(cat $CERTPATH/$SITENAME.json | jq -r '.warnings' ) != null ]]
@@ -287,6 +313,8 @@ fi
     if [[ $? != 0 ]]; then echo 'Error: starting NGINX'; exit 1; fi
 
     echo 'New certificate for '$SITENAME' generated. NGINX restarted.'
+fi
+
 
 ```
 
