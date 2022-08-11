@@ -27,8 +27,17 @@
 Дайте письменые ответы на следующие вопросы:
 
 - В чём отличие режимов работы сервисов в Docker Swarm кластере: replication и global?
+
+*В режиме работы Global в  Docker Swarm кластере сервисы на каждой ноде кластера, в режиме replication указывается количество сервисов на кластер, а Docker Swarm сам разместит на доступных нодах.
+
+
 - Какой алгоритм выбора лидера используется в Docker Swarm кластере?
+
+*Алгоритм называется Raft*
+
 - Что такое Overlay Network?
+
+*Сеть вкоторой контейнеры имеют логичекие связи без необходимости маршрутизации со стороны ОС*
 
 ## Задача 2
 
@@ -38,6 +47,7 @@
 ```
 docker node ls
 ```
+![](screenshots/Screenshot1.png)
 
 ## Задача 3
 
@@ -47,6 +57,7 @@ docker node ls
 ```
 docker service ls
 ```
+![](screenshots/Screenshot2.png)
 
 ## Задача 4 (*)
 
@@ -55,5 +66,4 @@ docker service ls
 # см.документацию: https://docs.docker.com/engine/swarm/swarm_manager_locking/
 docker swarm update --autolock=true
 ```
-
-SWMKEY-1-58M4CX8MVOVd3ZkuCmTjuQmeRwYvcQgi1U+Si8u7vFY
+Команда включает autolock. Шифрует ключи  Raft, которые хранятся на диске. Для добавления ноды в кластер необходим мастер-ключ, сгенерированный командой.
