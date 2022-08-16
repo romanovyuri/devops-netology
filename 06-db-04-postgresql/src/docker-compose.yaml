@@ -1,12 +1,18 @@
-version: "2.1"
+version: "3.7"
+
+volumes:
+  postgres:
+
 services:
   postgres:
-    image: postgres:12
+    image: postgres:13
+    container_name: postgres
     environment:
+      POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "pass"
       PGDATA: "/var/lib/postgresql/data/pgdata"
     volumes:
       - /opt/postgresql/backup:/var/lib/postgresql/backup
-      - /opt/postgresql/data:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     ports:
       - "5432:5432"
