@@ -233,8 +233,3 @@ ALTER TABLE public.orders_1 ADD UNIQUE(title);
 ALTER TABLE public.orders_2 ADD UNIQUE(title);
 ---
 
-### Как cдавать задание
-
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-
----
