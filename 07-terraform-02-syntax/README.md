@@ -168,4 +168,6 @@ Note: You didn't use the -out option to save this plan, so Terraform can't guara
 *Свой образ создавали и загружали в YC с помощью Packer.*
 1. Ссылку на репозиторий с исходной конфигурацией терраформа.  
  
-https://github.com/romanovyuri/devops-netology/tree/main/07-terraform-01-intro/terraform
+[ссылка на репозитарий](https://github.com/romanovyuri/devops-netology/tree/main/07-terraform-02-syntax/terraform)
+
+
