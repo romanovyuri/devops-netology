@@ -8,7 +8,7 @@
       tags: java
     - name: Upload .tar.gz file containing binaries from local storage
       copy:
-        src: "/files/{{ java_oracle_jdk_package }}"
+        src: "files/{{ java_oracle_jdk_package }}"
         dest: "/tmp/jdk-{{ java_jdk_version }}.tar.gz"
         mode: 0644
       register: download_java_binaries
@@ -85,15 +85,15 @@
        append: yes
     - name: Upload  tar.gz kibana from remote URL
       get_url:
-       url: "http://127.0.0.1/kibana-{{ kibana_version }}-linux-x86_64.tar.gz"
+       url: "http://192.168.1.15/kibana-{{ kibana_version }}-linux-x86_64.tar.gz"
        dest: "/tmp/kibana-{{ kibana_version }}-linux-x86_64.tar.gz"
        mode: 0755
        timeout: 60
        force: true
        validate_certs: false
-       register: get_kibana
-       until: get_kibana is succeeded
-       tags: kibana
+      register: get_kibana
+      until: get_kibana is succeeded
+      tags: kibana
     - name: Create directory for kibana
       file:
         state: directory
@@ -101,7 +101,7 @@
         group: kibana
         path: "{{ kibana_home }}"
         mode: 0755
-        tags: kibana
+      tags: kibana
     - name: Extract kibana in the installation directory
       become: true
       become_user: kibana
@@ -111,11 +111,11 @@
           dest: "{{ kibana_home }}"
           extra_opts: [ --strip-components=1 ]
           creates: "{{ kibana_home }}/bin/kibana"
-          tags: kibana
-    - name: Set environment kibana
+      tags: kibana
+    - name: Set environment Kibana
       become: true
       template:
-      src: templates/kibana.sh.j2
-      dest: /etc/profile.d/kibana.sh
-      mode: 0755
+       src: templates/kibana.sh.j2
+       dest: /etc/profile.d/kibana.sh
+       mode: 0755
       tags: kibana
