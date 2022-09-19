@@ -32,7 +32,7 @@
 
 *Репозиторий с ролью Elasticsearch*
 
-https://github.com/romanovyuri/kibana-role.git
+https://github.com/romanovyuri/elastic-role.git
 
 *Репозиторий с ролью Kibana*
 
